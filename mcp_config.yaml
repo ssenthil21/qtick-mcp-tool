@@ -1,0 +1,21 @@
+
+name: qtick-mcp
+description: MCP service to manage leads and reports in QTick
+protocol_version: 1
+transport: http
+base_url: https://qtick-mcp.onrender.com
+entry_point: main.py
+
+tools:
+  - name: create_lead
+    description: Create a new sales lead in QTick
+    method: POST
+    path: /create_lead
+  - name: list_leads
+    description: List existing sales leads
+    method: GET
+    path: /list_leads
+  - name: list_reports
+    description: Retrieve reports summary
+    method: GET
+    path: /list_reports
