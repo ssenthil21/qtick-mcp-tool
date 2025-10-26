@@ -3,7 +3,7 @@ name: qtick-mcp
 description: MCP service to manage leads and reports in QTick
 protocol_version: 1
 transport: http
-base_url: https://urchin-app-ax5kp.ondigitalocean.app
+base_url: https://qtick-mcp.onrender.com
 entry_point: main.py
 
 tools:
