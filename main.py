@@ -4,8 +4,10 @@ import sqlite3
 from typing import Optional
 from fastapi import FastAPI
 from fastapi.responses import FileResponse
-from pydantic import BaseModel
+from pydantic import BaseModel, EmailStr
 from dotenv import load_dotenv
+from pathlib import Path  # ✅ <-- Make sure this line exists
+
 
 
 load_dotenv()
