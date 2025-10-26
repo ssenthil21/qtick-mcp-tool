@@ -98,10 +98,21 @@ def list_reports():
 
 MANIFEST_PATH = Path(__file__).parent / "mcp_config.yaml"
 
+from fastapi.responses import Response
+
 @app.get("/mcp/manifest", include_in_schema=False)
 def mcp_manifest():
-    return FileResponse(MANIFEST_PATH, media_type="text/yaml")
+    content = MANIFEST_PATH.read_text()
+    return Response(content=content, media_type="application/yaml")
 
 @app.get("/health", include_in_schema=False)
 def health():
     return {"status": "ok"}
+
+@app.get("/")
+def root():
+    return {
+        "message": "QTick MCP is running",
+        "manifest": "/mcp/manifest",
+        "status": "ok"
+    }
