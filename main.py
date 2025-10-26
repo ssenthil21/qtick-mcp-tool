@@ -103,7 +103,8 @@ from fastapi.responses import Response
 @app.get("/mcp/manifest", include_in_schema=False)
 def mcp_manifest():
     content = MANIFEST_PATH.read_text()
-    return Response(content=content, media_type="application/yaml")
+    headers = {"Cache-Control": "no-store", "X-Auth-Type": "none"}
+    return Response(content=content, media_type="application/yaml", headers=headers)
 
 @app.get("/health", include_in_schema=False)
 def health():
