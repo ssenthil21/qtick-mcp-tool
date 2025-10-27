@@ -2,8 +2,8 @@ import os
 import sqlite3
 import secrets
 from typing import Optional
-from fastapi import FastAPI, Form, Request
-from fastapi.responses import Response, RedirectResponse, JSONResponse
+from fastapi import FastAPI, HTTPException, Depends, Request, Form
+from fastapi.responses import Response, RedirectResponse, JSONResponse, FileResponse
 from pydantic import BaseModel, EmailStr
 from pathlib import Path
 
