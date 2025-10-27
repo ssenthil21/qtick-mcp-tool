@@ -124,11 +124,9 @@ async def token(grant_type: str = Form(...),
 
 MANIFEST_PATH = Path(__file__).parent / "mcp_config.yaml"
 
-@app.get("/mcp/manifest", include_in_schema=False)
-def mcp_manifest():
-    content = MANIFEST_PATH.read_text()
-    headers = {"Cache-Control": "no-store"}
-    return Response(content, media_type="application/yaml", headers=headers)
+@app.api_route("/mcp/manifest", methods=["GET", "POST"], include_in_schema=False)
+async def mcp_manifest(request: Request):
+    return FileResponse(MANIFEST_PATH, media_type="text/yaml")
 
 @app.get("/", include_in_schema=False)
 def root():
