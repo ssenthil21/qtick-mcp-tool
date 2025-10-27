@@ -1,5 +1,5 @@
 name: qtick-mcp
-description: MCP service to manage leads and reports in QTick
+description: QTick MCP service for managing leads and reports
 protocol_version: "1"
 transport: http
 base_url: https://urchin-app-ax5kp.ondigitalocean.app
