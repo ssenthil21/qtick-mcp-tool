@@ -1,6 +1,6 @@
 name: qtick-mcp
 description: MCP service to manage leads and reports in QTick
-protocol_version: 1
+protocol_version: "1"
 transport: http
 base_url: https://urchin-app-ax5kp.ondigitalocean.app
 entry_point: main.py
@@ -19,10 +19,33 @@ tools:
     description: Create a new sales lead in QTick
     method: POST
     path: /create_lead
+    parameters:
+      - name: name
+        type: string
+        required: true
+        description: Full name of the lead
+      - name: email
+        type: string
+        required: true
+        description: Email address of the lead
+      - name: source
+        type: string
+        required: false
+        description: Source channel (e.g., Website, Referral)
+      - name: company
+        type: string
+        required: false
+        description: Company name
+      - name: phone
+        type: string
+        required: false
+        description: Phone number
+
   - name: list_leads
     description: List existing sales leads
     method: GET
     path: /list_leads
+
   - name: list_reports
     description: Retrieve reports summary
     method: GET
