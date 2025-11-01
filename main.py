@@ -152,3 +152,11 @@ def mcp_manifest(request: Request):
 @app.get("/health", include_in_schema=False)
 def health():
     return {"status": "ok"}
+
+@app.get("/", include_in_schema=False)
+def root():
+    return {
+        "message": "QTick MCP Service is running",
+        "status": "ok",
+        "endpoints": ["/mcp/manifest", "/create_lead", "/list_leads", "/list_reports"]
+    }
