@@ -1,4 +1,5 @@
 name: qtick-mcp
+version: "1.0.0"
 description: QTick MCP service for managing leads and reports
 protocol_version: "1"
 transport: http

@@ -139,11 +139,15 @@ def list_reports(_: None = Depends(verify_auth)):
     return {"reports": rows}
 
 # ---------------------- Manifest Endpoint (JSON) ----------------------
+
 @app.api_route("/mcp/manifest", methods=["GET", "POST"], include_in_schema=False)
 def mcp_manifest(request: Request):
     with open("mcp_config.yaml", "r", encoding="utf-8") as f:
         manifest_yaml = yaml.safe_load(f)
+    if "version" not in manifest_yaml:
+        manifest_yaml["version"] = "1.0.0"
     return JSONResponse(content=manifest_yaml)
+
 
 @app.get("/health", include_in_schema=False)
 def health():
