@@ -153,10 +153,19 @@ def mcp_manifest(request: Request):
 def health():
     return {"status": "ok"}
 
+
+# 1️⃣ Root endpoint so GET / returns 200
 @app.get("/", include_in_schema=False)
 def root():
     return {
-        "message": "QTick MCP Service is running",
-        "status": "ok",
-        "endpoints": ["/mcp/manifest", "/create_lead", "/list_leads", "/list_reports"]
+        "message": "QTick MCP Service is alive",
+        "manifest": "/mcp/manifest",
+        "tools": ["/create_lead", "/list_leads", "/list_reports"]
     }
+
+# 2️⃣ Allow OPTIONS requests on your tool routes (ChatGPT does preflights)
+from fastapi.responses import Response
+
+@app.options("/{full_path:path}", include_in_schema=False)
+def options_handler(full_path: str):
+    return Response(status_code=204)
